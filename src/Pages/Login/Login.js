@@ -42,7 +42,6 @@ const Login = () => {
 
       if(user){
           navigate(from, {replace: true});
-          console.log(user)
       }
 
       if(loading){
@@ -50,7 +49,7 @@ const Login = () => {
       }
 
       if(error){
-          errorElement = <p className='text-dagner'>Error: {error?.message}</p>
+          errorElement = <p className='text-danger'>Error: {error?.message}</p>
       }
     return (
         <div>
