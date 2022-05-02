@@ -6,16 +6,18 @@ const Products = () => {
     const [products, setProducts] = useState([]);
 
     useEffect( () => {
-        fetch('products.json')
+        fetch('http://localhost:5000/product')
         .then(res => res.json())
         .then(data => setProducts(data))
-    },[])
+    },[]);
+    const slicedProducts = products.slice(0, 6);
     return (
        <div className='container mx-auto'>
+           <h1 className='text-center mt-4'>Products</h1>
             <div>
                 <CardGroup>
                 {
-                    products.map(product => <Product product={product}></Product>)
+                    slicedProducts.map(product => <Product key={product._id} product={product}></Product>)
                 }
                 </CardGroup>
             </div>

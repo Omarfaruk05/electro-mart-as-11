@@ -1,7 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Pages/Home/Home';
+import Inventory from './Pages/Inventory/Inventory';
 import Login from './Pages/Login/Login';
+import ProtectedRoute from './Pages/Login/ProtectedRoute/ProtectedRoute';
 import Register from './Pages/Register/Register';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
@@ -14,11 +16,18 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
+        <Route path='/inventory/:inventoryId' element={
+          <ProtectedRoute>
+            <Inventory></Inventory>
+          </ProtectedRoute>
+        }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
+
+      {/* stack overflow quesction link ::: https://stackoverflow.com/questions/72090947/why-we-use-variant-instead-classname-in-react-bootstrap-button  */}
     </div>
   );
 }
