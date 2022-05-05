@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { CardGroup } from 'react-bootstrap';
+import useProducts from '../../../hooks/useProducts';
 import Product from '../Product/Product';
  
 const Products = () => {
-    const [products, setProducts] = useState([]);
-
-    useEffect( () => {
-        fetch('http://localhost:5000/product')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    },[]);
+    const [products] = useProducts();
     const slicedProducts = products.slice(0, 6);
     return (
        <div className='container mx-auto'>
