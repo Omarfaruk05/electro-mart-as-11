@@ -7,7 +7,7 @@ const Inventory = () => {
     const [product, setProduct] = useState({});
     const {_id, name, img, discription, price, supplierName} = product;
     let {quantity} = product;
-    console.log()
+
     useEffect( () => {
         const url = `http://localhost:5000/product/${inventoryId}`;
 
@@ -15,28 +15,54 @@ const Inventory = () => {
         .then(res => res.json())
         .then(data => {setProduct(data)});
         
-    },[])
+    },[product])
  
     const handleDedeverd = (id) => {
         if(quantity > 1){
             quantity = quantity - 1;
-        }
-        else{
-            quantity = 'Sold Out'
-        }
-       
+            const updatedQuantity = {quantity};
 
+            const url = `http://localhost:5000/product/${inventoryId}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedQuantity)
+            })
+
+            }
+            else if(quantity === 1){
+                quantity = 'Sold Out';
+                const updatedQuantity = {quantity};
+
+                const url = `http://localhost:5000/product/${inventoryId}`;
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedQuantity)
+                })
+                
+            }
+       
+            console.log(quantity)
     };
 
     const handleAdd = (event) => {
         event.preventDefault();
         const AddedQuantity = event.target.number.value;
-        quantity = quantity + parseInt(AddedQuantity);
-        console.log(quantity);
+
+        if(quantity === 'Sold Out') {
+            quantity = parseInt(AddedQuantity);
+        }
+        else{
+            quantity = quantity + parseInt(AddedQuantity);
+        }
+        
         
         const updatedQuantity= { quantity}
-        console.log(updatedQuantity)
-
         const url = `http://localhost:5000/product/${inventoryId}`;
         fetch(url, {
             method: 'PUT',
@@ -45,7 +71,6 @@ const Inventory = () => {
             },
             body: JSON.stringify(updatedQuantity)
         })
-        
     }
     
     return (
@@ -67,7 +92,7 @@ const Inventory = () => {
                                 <button onClick={handleDedeverd} className='btn btn-success'>Deleverd</button>
                                 <div className='d-flex'>
                                     <Form onSubmit={handleAdd}>
-                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Group className="my-3" controlId="formBasicEmail">
                                             <Form.Control type="number" name='number' placeholder="Add items quantity" />
                                         </Form.Group>
                                         <Button variant="primary" type="submit">
