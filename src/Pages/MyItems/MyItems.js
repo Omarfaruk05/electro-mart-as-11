@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 import useProducts from '../../hooks/useProducts';
-import ManageItems from './ManageItems/ManageItems';
+import ManageItems from '../ManageInventory/ManageItems/ManageItems';
 
-const ManageInventory = () => {
-    const [products, setProducts] = useProducts();
+const MyItems = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure?');
         if(proceed){
@@ -20,19 +20,19 @@ const ManageInventory = () => {
             })
         }
     }
+    const [user] = useAuthState(auth)
+    const [products, setProducts]  = useProducts([]);
 
+    const myProducts = products.filter(product => product.email === user.email);
     return (
         <div>
-            <div className='mt-5'>
-                <div className='d-flex justify-content-center'>
-                   <Link to={"/addItems"}><button className='btn btn-success '>Add Items</button></Link>
-                </div>
+            <div style={{minHeight:'100vh'}}>
                 {
-                    products.map(product => <ManageItems key={product._id} product={product} handleDelete={handleDelete}></ManageItems>)
+                    myProducts.map(product => <ManageItems key={product._id} product={product} handleDelete={handleDelete}></ManageItems>)
                 }
             </div>
         </div>
     );
 };
 
-export default ManageInventory;
+export default MyItems;

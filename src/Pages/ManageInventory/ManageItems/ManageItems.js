@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ManageItems = ({product, handleDelete}) => {
-    const {_id, name, img, quantity} = product;
+    const {_id, name, img, quantity, email} = product;
 
 
     return (

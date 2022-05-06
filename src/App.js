@@ -6,6 +6,7 @@ import Inventory from './Pages/Inventory/Inventory';
 import Login from './Pages/Login/Login';
 import ProtectedRoute from './Pages/Login/ProtectedRoute/ProtectedRoute';
 import ManageInventory from './Pages/ManageInventory/ManageInventory';
+import MyItems from './Pages/MyItems/MyItems';
 import Register from './Pages/Register/Register';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
@@ -26,6 +27,11 @@ function App() {
         <Route path='/manageInventory' element={
           <ProtectedRoute>
             <ManageInventory></ManageInventory>
+          </ProtectedRoute>
+        }></Route>
+        <Route path='/myItems' element={
+          <ProtectedRoute>
+            <MyItems></MyItems>
           </ProtectedRoute>
         }></Route>
         <Route path='/addItems' element={
