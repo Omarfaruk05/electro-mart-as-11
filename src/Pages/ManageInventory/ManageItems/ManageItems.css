@@ -1,13 +1,13 @@
 .inventory-items{
     border-radius: 8px;
-    box-shadow: 0.1px 0.1px 10px #ffb88996;
+    box-shadow: 0.1px 0.1px 10px #aed6f1ba;
     min-height: 150px;
     margin: 0 10px;
     transition: 0.3s;
 }
 .inventory-items:hover{
     border-radius: 18px;
-    box-shadow: 0.1px 0.1px 30px #ffb88996;
+    box-shadow: 0.1px 0.1px 30px #86adc7ba;
 }
 @media only screen and (min-width: 600px){
     .delete-btn{

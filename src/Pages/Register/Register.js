@@ -56,7 +56,7 @@ const Register = () => {
     return (
         <div  style={{minHeight:"80vh"}}>
             <div style={{maxWidth:"500px"}} className='w-50 mx-auto main add-items'>
-                <h1 className='text-center py-3 add-items-header'>Please Login</h1>
+                <h1 className='text-center py-3 add-items-header'>Please Register</h1>
                 <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
 
                     <input className='mb-2 input' name='name' type='text' placeholder='Full Name'{...register("name", { required: true})} />
@@ -72,7 +72,7 @@ const Register = () => {
                     <div className="invalid-feedback">{errors.passwordConfirm?.message}</div>
 
                     {errorElement}
-                    <input type="submit" value="login" className='input input-submit' />
+                    <input type="submit" value="Register" className='input input-submit' />
                 </form>
                 <p className=' mt-2'>Don't have an account? <Link className='text-decoration-none orange-color' to={"/login"}>Please Login</Link></p>                
             </div >
