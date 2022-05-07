@@ -1,12 +1,13 @@
 import React from 'react';
+import './ManageItems.css'
 
 const ManageItems = ({product, handleDelete}) => {
-    const {_id, name, img, quantity, email} = product;
+    const {_id, name, img, quantity} = product;
 
 
     return (
         <div>
-            <div className='container row mx-auto mt-5 text-center border rounded align-items-center' style={{height:'150px'}}>
+            <div className='container row mx-auto mt-5 text-center align-items-center inventory-items'>
                 <div className='col-sm-3'>
                     <img width={'100px'} src={img} alt="" />
                 </div>
@@ -17,7 +18,7 @@ const ManageItems = ({product, handleDelete}) => {
                     <h5>{quantity}</h5>
                 </div>
                 <div  className='col-sm-3'>
-                    <button onClick={() => handleDelete(_id)} className='btn btn-danger'>Delete</button>
+                    <button onClick={() => handleDelete(_id)} className='button delete-btn'>Delete</button>
                 </div>
             </div>
         </div>

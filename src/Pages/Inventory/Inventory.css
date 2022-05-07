@@ -1,0 +1,24 @@
+.inventory-container{
+    margin-top: 30px;
+    border: 1px solid #F66B0E;
+}
+.button{
+    color: #F66B0E;
+    border: 1px solid #F66B0E;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    margin: 5px;
+    transition: 0.3s;
+    width: 200px;
+}
+.button:hover{
+    background-color: #F66B0E;
+    color: white;
+    border-radius: 15px;
+}
+.quantity-field{
+    outline: 2px solid #F66B0E;
+    padding: 8px 20px;
+}

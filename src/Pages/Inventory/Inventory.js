@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import './Inventory.css'
 
 const Inventory = () => {
     const {inventoryId} = useParams();
@@ -9,7 +10,7 @@ const Inventory = () => {
     let {quantity} = product;
 
     useEffect( () => {
-        const url = `http://localhost:5000/product/${inventoryId}`;
+        const url = `https://quiet-headland-86526.herokuapp.com/product/${inventoryId}`;
 
         fetch(url)
         .then(res => res.json())
@@ -21,8 +22,9 @@ const Inventory = () => {
         if(quantity > 1){
             quantity = quantity - 1;
             const updatedQuantity = {quantity};
+            product.quantity = quantity;
 
-            const url = `http://localhost:5000/product/${inventoryId}`;
+            const url = `https://quiet-headland-86526.herokuapp.com/product/${inventoryId}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -30,13 +32,13 @@ const Inventory = () => {
                 },
                 body: JSON.stringify(updatedQuantity)
             })
-
+            
             }
             else if(quantity === 1){
                 quantity = 'Sold Out';
                 const updatedQuantity = {quantity};
 
-                const url = `http://localhost:5000/product/${inventoryId}`;
+                const url = `https://quiet-headland-86526.herokuapp.com/product/${inventoryId}`;
                 fetch(url, {
                     method: 'PUT',
                     headers: {
@@ -47,7 +49,7 @@ const Inventory = () => {
                 
             }
        
-            console.log(quantity)
+           
     };
 
     const handleAdd = (event) => {
@@ -63,7 +65,7 @@ const Inventory = () => {
         
         
         const updatedQuantity= { quantity}
-        const url = `http://localhost:5000/product/${inventoryId}`;
+        const url = `https://quiet-headland-86526.herokuapp.com/product/${inventoryId}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -71,34 +73,38 @@ const Inventory = () => {
             },
             body: JSON.stringify(updatedQuantity)
         })
+        event.target.reset();
     }
     
     return (
-        <div>
+        <div className='main'>
             <div className='container mt-5'>
-                <div className="card mb-3 ">
+                <div className=" card mb-3 ">
                     <div className="row g-3 m-5">
                         <div className="col-md-4">
                         <img src={img} className="img-fluid rounded-start" alt="" />
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h2 className="card-title mb-3">{name}</h2>
-                                <p className="card-text">{discription}</p>
-                                <p className="card-text fw-bold">Supplier: {supplierName}</p>
-                                <h4>Price: ${price}</h4>
-                                <h4>Quantity: {quantity}</h4>
+                                <h2 className="orange-color card-title mb-3">{name}</h2>
+                                <p className="card-text"><span className='orange-color fs-5 me-2'>Description:</span>{discription}</p>
+                                <p className="card-text fw-bold"><span className='orange-color me-1'>Supplier:</span> {supplierName}</p>
+                                <h4><span className='orange-color me-1'>Price:</span> ${price}</h4>
+                                <h4><span className='orange-color me-1'>Quantity:</span> {quantity}</h4>
                                 <p className="card-text"></p>
-                                <button onClick={handleDedeverd} className='btn btn-success'>Deleverd</button>
+                                <button onClick={handleDedeverd} className='button'>Deleverd</button>
                                 <div className='d-flex'>
                                     <Form onSubmit={handleAdd}>
                                         <Form.Group className="my-3" controlId="formBasicEmail">
-                                            <Form.Control type="number" name='number' placeholder="Add items quantity" />
+                                            <Form.Control className='quantity-field' type="number" name='number' placeholder="Add items quantity" />
                                         </Form.Group>
-                                        <Button variant="primary" type="submit">
-                                            Add
-                                        </Button>
+                                        <button className='button'  type="submit">
+                                            Add Quantity
+                                        </button>
                                     </Form>
+                                </div>
+                                <div>
+                                    <Link to={"/manageInventory"}> <button className='button'>All Inventory</button> </Link>
                                 </div>
                             </div>
                         </div>

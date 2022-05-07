@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import LoadingSpinner from '../../Shared/LoadingSpinner/LoadingSpinner';
 import SocialLogin from './SocialLogin/SocialLogin';
+import './Login.css'
 
 const Login = () => {
     const emailRef = useRef('');
@@ -20,13 +21,28 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
-      const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+      const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
-      const handleSubmit = (event) => {
+      const handleSubmit = async(event) => {
           event.preventDefault();
           const email = event.target.email.value;
           const passowrd = event.target.password.value;
-          signInWithEmailAndPassword(email, passowrd);
+
+          await signInWithEmailAndPassword(email, passowrd);
+
+        fetch('https://quiet-headland-86526.herokuapp.com/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({email})
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            localStorage.setItem('token', result.token);
+            navigate(from, {replace: true});
+        })
       };
 
       const resetPassword = async() => {
@@ -40,9 +56,6 @@ const Login = () => {
           }
       }
 
-      if(user){
-          navigate(from, {replace: true});
-      }
 
       if(loading){
           return <LoadingSpinner></LoadingSpinner>
@@ -58,7 +71,7 @@ const Login = () => {
                     <h1 className='text-center mb-4'>Login to your account</h1>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control name='email' ref={emailRef} className='py-2' type="email"    placeholder="Email address" />
+                            <Form.Control name='email' ref={emailRef} className='py-2 input' type="email"    placeholder="Email address" />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -67,10 +80,10 @@ const Login = () => {
                         {errorElement}
                         <Button variant="primary d-block mx-auto px-5" type="submit">
                             login
-                        </Button>
-                        <p>Don't have an account? <Link className='text-decoration-none' to={"/register"}>Please Register</Link></p>
-                        <p>Forget Password? <Link onClick={resetPassword} className='text-primary pe-auto text-decoration-none' to="/login">Reset Password</Link> </p>
+                        </Button>  
                     </Form>
+                    <p>Don't have an account? <Link className='text-decoration-none' to={"/register"}>Please Register</Link></p>
+                    <p>Forget Password? <Link onClick={resetPassword} className='text-primary pe-auto text-decoration-none' to="/login">Reset Password</Link> </p>
                 </div>
                 <SocialLogin></SocialLogin>
                 <ToastContainer></ToastContainer>
