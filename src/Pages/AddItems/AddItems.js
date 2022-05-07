@@ -26,7 +26,7 @@ const AddItems = () => {
     };
 
     return (
-        <div className='w-50 mx-auto main add-items'>
+        <div style={{maxWidth:"500px", height:'80vh'}} className='w-50 mx-auto main add-items'>
             <h2 className='text-center py-3 add-items-header'>Please add items.</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                 <input className='mb-2 input' value={user?.email}{...register("email", { required: true})} />

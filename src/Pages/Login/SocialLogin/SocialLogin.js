@@ -32,7 +32,7 @@ const SocialLogin = () => {
         </div>
         {errorElement}
         <div className='text-center'>
-            <button onClick={() => signInWithGoogle ()} className='px-5 btn btn-primary'>Sign in with google</button>
+            <button onClick={() => signInWithGoogle ()} className='px-5 button w-75'>Sign in with google</button>
         </div>
     </div>
     );
