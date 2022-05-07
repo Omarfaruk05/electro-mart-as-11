@@ -1,0 +1,23 @@
+.footer{
+    background-color: #205375;
+    padding: 30px;
+    color: white;
+}
+.footer hr{
+    color: white;
+}
+.logo{
+    margin: 10px;
+    font-size: 30px;
+    width: 250px;
+    padding: 30px 20px;
+    background-color:#F66B0E;
+    color: white;
+    border: 1px solid #F66B0E;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;
+}
+.footer .go-btn{
+    width: auto;
+    padding: 11px 15px;
+    margin-left: 2px;
+}

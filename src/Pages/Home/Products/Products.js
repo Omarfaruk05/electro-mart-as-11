@@ -1,4 +1,5 @@
 import { CardGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import useProducts from '../../../hooks/useProducts';
 import Product from '../Product/Product';
 import './Products.css'
@@ -15,6 +16,9 @@ const Products = () => {
                     slicedProducts.map(product => <Product key={product._id} product={product}></Product>)
                 }
                 </CardGroup>
+            </div>
+            <div className='text-center w-100'>
+                <Link to={"/manageInventory"}><button className='button'>Manage Inventory</button></Link>
             </div>
        </div>
     );

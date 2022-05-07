@@ -26,7 +26,7 @@ const MyItems = () => {
 
     const myProducts = products.filter(product => product.email === user.email);
     return (
-        <div className='main'>
+        <div className='main mb-5'>
             <div className='d-flex justify-content-center align-items-center add-items-btn-container'>
                    <Link to={"/addItems"}><button className='button text-center add-items-btn '>Add Items</button></Link>
                 </div>

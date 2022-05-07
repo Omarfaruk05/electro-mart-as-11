@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
 import './Inventory.css'
 
 const Inventory = () => {
+    const { register, handleSubmit } = useForm();
     const {inventoryId} = useParams();
     const [product, setProduct] = useState({});
     const {_id, name, img, discription, price, supplierName} = product;
@@ -52,9 +54,8 @@ const Inventory = () => {
            
     };
 
-    const handleAdd = (event) => {
-        event.preventDefault();
-        const AddedQuantity = event.target.number.value;
+    const onSubmit = (data, event) => {
+        const AddedQuantity = data.quantity;
 
         if(quantity === 'Sold Out') {
             quantity = parseInt(AddedQuantity);
@@ -94,14 +95,10 @@ const Inventory = () => {
                                 <p className="card-text"></p>
                                 <button onClick={handleDedeverd} className='button'>Deleverd</button>
                                 <div className='d-flex'>
-                                    <Form onSubmit={handleAdd}>
-                                        <Form.Group className="my-3" controlId="formBasicEmail">
-                                            <Form.Control className='quantity-field' type="number" name='number' placeholder="Add items quantity" />
-                                        </Form.Group>
-                                        <button className='button'  type="submit">
-                                            Add Quantity
-                                        </button>
-                                    </Form>
+                                <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
+                                    <input className='mb-1 input mt-3' placeholder='Add Items Quantity' type="number" {...register("quantity", { required: true})} />
+                                    <input type="submit" value="Restock" className='button input-submit' />
+                                </form>
                                 </div>
                                 <div>
                                     <Link to={"/manageInventory"}> <button className='button'>All Inventory</button> </Link>
