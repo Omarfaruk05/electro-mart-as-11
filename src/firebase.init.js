@@ -6,12 +6,13 @@ import { getAuth } from 'firebase/auth'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD47JubBMDVNMNpWFcIXhSfkM1Q1JptkiY",
-  authDomain: "electro-mart-36ca8.firebaseapp.com",
-  projectId: "electro-mart-36ca8",
-  storageBucket: "electro-mart-36ca8.appspot.com",
-  messagingSenderId: "506574464126",
-  appId: "1:506574464126:web:731162e9edb1c24121a42f"
+  apiKey:process.env.REACT_APP_apiKey,
+  authDomain:process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId,
+  storageBucket:process.env.REACT_APP_storageBucket,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId,
+  appId:process.env.REACT_APP_appId
+
 };
 
 // Initialize Firebase
