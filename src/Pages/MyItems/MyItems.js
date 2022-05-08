@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
@@ -6,11 +7,25 @@ import useProducts from '../../hooks/useProducts';
 import ManageItems from '../ManageInventory/ManageItems/ManageItems';
 
 const MyItems = () => {
+    const [user] = useAuthState(auth)
     const [addedPrducts, setAddedProducts] = useState([]);
     useEffect( () => {
-        const url = `http://localhost:5000/addedProduct`
-    }, [])
-    
+        
+        const getAddedProducts = async() => {
+            const email = user.email;
+            const url = `http://localhost:5000/addedProduct?email=${email}`;
+            const {data} = await axios.get(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+              
+            })
+            setAddedProducts(data)
+        }
+        getAddedProducts();
+            
+    }, [user])
+
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure?');
         if(proceed){
@@ -21,15 +36,10 @@ const MyItems = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                const remaining = products.filter(product => product._id !== id);
-                setProducts(remaining);
+                
             })
         }
     }
-    const [user] = useAuthState(auth)
-    const [products, setProducts]  = useProducts([]);
-
-    const myProducts = products.filter(product => product.email === user.email);
     return (
         <div className='main mb-5'>
             <div className='d-flex justify-content-center align-items-center add-items-btn-container'>
@@ -37,7 +47,7 @@ const MyItems = () => {
                 </div>
             <div className='all-inventory' style={{minHeight:'100vh'}}>
                 {
-                    myProducts.map(product => <ManageItems key={product._id} product={product} handleDelete={handleDelete}></ManageItems>)
+                    addedPrducts.map(addedProduct => <ManageItems key={addedProduct._id} product={addedProduct} handleDelete={handleDelete}></ManageItems>)
                 }
             </div>
         </div>
