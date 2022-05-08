@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AddItems from './Pages/AddItems/AddItems';
+import Blogs from './Pages/Blogs/Blogs';
 import Home from './Pages/Home/Home';
 import Inventory from './Pages/Inventory/Inventory';
 import Login from './Pages/Login/Login';
@@ -14,7 +15,7 @@ import NotFound from './Shared/NotFound/NotFound';
 
 function App() {
   return (
-    <div>
+    <div className='bg-light'>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
@@ -39,6 +40,7 @@ function App() {
             <AddItems></AddItems>
           </ProtectedRoute>
         }></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
