@@ -1,6 +1,6 @@
 # Project name: FR PHOTOGRAPHY
 
-## project live link:[FR PHOTOGRAPHY](https://electro-mart-36ca8.web.app/).
+## project live link:[Electro Mart](https://electro-mart-36ca8.web.app/).
 
 ## Available Scripts
 
