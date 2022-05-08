@@ -6,6 +6,11 @@ import useProducts from '../../hooks/useProducts';
 import ManageItems from '../ManageInventory/ManageItems/ManageItems';
 
 const MyItems = () => {
+    const [addedPrducts, setAddedProducts] = useState([]);
+    useEffect( () => {
+        const url = `http://localhost:5000/addedProduct`
+    }, [])
+    
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure?');
         if(proceed){
