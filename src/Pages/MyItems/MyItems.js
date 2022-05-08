@@ -1,26 +1,35 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import useProducts from '../../hooks/useProducts';
 import ManageItems from '../ManageInventory/ManageItems/ManageItems';
 
 const MyItems = () => {
     const [user] = useAuthState(auth)
     const [addedPrducts, setAddedProducts] = useState([]);
+    const navigate = useNavigate();
     useEffect( () => {
         
         const getAddedProducts = async() => {
             const email = user.email;
-            const url = `http://localhost:5000/addedProduct?email=${email}`;
-            const {data} = await axios.get(url, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('token')}`
+            const url = `https://quiet-headland-86526.herokuapp.com/addedProduct?email=${email}`;
+            try{
+                const {data} = await axios.get(url, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                  
+                })
+                setAddedProducts(data)
+            }
+            catch(error){
+                if(error.response.status === 403 || error.response.status === 401){
+                    signOut(auth)
+                    navigate('/login')
                 }
-              
-            })
-            setAddedProducts(data)
+            }
         }
         getAddedProducts();
             
