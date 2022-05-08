@@ -1,4 +1,4 @@
-# Project name: FR PHOTOGRAPHY
+# Project name: Electro Mart
 
 ## project live link:[Electro Mart](https://electro-mart-36ca8.web.app/).
 
