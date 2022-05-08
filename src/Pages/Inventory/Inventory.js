@@ -89,10 +89,10 @@ const Inventory = () => {
                             <div className="card-body">
                                 <h2 className="orange-color card-title mb-3">{name}</h2>
                                 <p className="card-text"><span className='orange-color fs-5 me-2'>Description:</span>{discription}</p>
+                                <p className="card-text id"><small>Id = {_id}</small></p>
                                 <p className="card-text fw-bold"><span className='orange-color me-1'>Supplier:</span> {supplierName}</p>
                                 <h4><span className='orange-color me-1'>Price:</span> ${price}</h4>
-                                <h4><span className='orange-color me-1'>Quantity:</span> {quantity}</h4>
-                                <p className="card-text"></p>
+                                <h4><span className='orange-color me-1'>Quantity:</span> {quantity}</h4>                                
                                 <button onClick={handleDedeverd} className='button'>Deleverd</button>
                                 <div className='d-flex'>
                                 <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
