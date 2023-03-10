@@ -9,7 +9,7 @@ const ManageInventory = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://electro-mart-as-11-server.vercel.app//product/${id}`;
+      const url = `https://electro-mart-server-2-0.onrender.com/product/${id}`;
       fetch(url, {
         method: "DELETE",
       })

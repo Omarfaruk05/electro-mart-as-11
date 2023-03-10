@@ -13,7 +13,7 @@ const MyItems = () => {
   useEffect(() => {
     const getAddedProducts = async () => {
       const email = user.email;
-      const url = `https://electro-mart-as-11-server.vercel.app//addedProduct?email=${email}`;
+      const url = `https://electro-mart-server-2-0.onrender.com/addedProduct?email=${email}`;
       try {
         const { data } = await axios.get(url, {
           headers: {
@@ -34,7 +34,7 @@ const MyItems = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const url = `https://electro-mart-as-11-server.vercel.app//product/${id}`;
+      const url = `https://electro-mart-server-2-0.onrender.com/product/${id}`;
       fetch(url, {
         method: "DELETE",
       })

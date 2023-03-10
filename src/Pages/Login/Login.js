@@ -31,7 +31,7 @@ const Login = () => {
 
     await signInWithEmailAndPassword(email, passowrd);
 
-    fetch("https://electro-mart-as-11-server.vercel.app//login", {
+    fetch("https://electro-mart-server-2-0.onrender.comlogin", {
       method: "POST",
       headers: {
         "content-type": "application/json",

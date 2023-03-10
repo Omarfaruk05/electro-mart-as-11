@@ -10,7 +10,7 @@ const AddItems = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data, event) => {
     console.log(data.email);
-    const url = `https://electro-mart-as-11-server.vercel.app//product`;
+    const url = `https://electro-mart-server-2-0.onrender.com/product`;
     fetch(url, {
       method: "POST",
       headers: {

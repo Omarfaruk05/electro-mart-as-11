@@ -4,7 +4,7 @@ const useProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://electro-mart-as-11-server.vercel.app//product")
+    fetch("https://electro-mart-server-2-0.onrender.com/product")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

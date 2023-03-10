@@ -12,7 +12,7 @@ const Inventory = () => {
   let { quantity } = product;
 
   useEffect(() => {
-    const url = `https://electro-mart-as-11-server.vercel.app//product/${inventoryId}`;
+    const url = `https://electro-mart-server-2-0.onrender.com/product/${inventoryId}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -27,7 +27,7 @@ const Inventory = () => {
       const updatedQuantity = { quantity };
       product.quantity = quantity;
 
-      const url = `https://electro-mart-as-11-server.vercel.app//product/${inventoryId}`;
+      const url = `https://electro-mart-server-2-0.onrender.com/product/${inventoryId}`;
       fetch(url, {
         method: "PUT",
         headers: {
@@ -39,7 +39,7 @@ const Inventory = () => {
       quantity = "Sold Out";
       const updatedQuantity = { quantity };
 
-      const url = `https://electro-mart-as-11-server.vercel.app//product/${inventoryId}`;
+      const url = `https://electro-mart-server-2-0.onrender.com/product/${inventoryId}`;
       fetch(url, {
         method: "PUT",
         headers: {
@@ -60,7 +60,7 @@ const Inventory = () => {
     }
 
     const updatedQuantity = { quantity };
-    const url = `https://electro-mart-as-11-server.vercel.app//product/${inventoryId}`;
+    const url = `https://electro-mart-server-2-0.onrender.com/product/${inventoryId}`;
     fetch(url, {
       method: "PUT",
       headers: {
